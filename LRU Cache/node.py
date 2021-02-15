@@ -1,5 +1,4 @@
 class Node:
-    def __init__(self, query, data):
+    def __init__(self, query):
         self.query = query
-        self.data = data
         self.link = None

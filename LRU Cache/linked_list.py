@@ -8,7 +8,7 @@ class LinkedList:
 
     def move_to_front(self, node):
         temp = self.head
-        before_temp = Node(0, 0)
+        before_temp = Node(0)
         while temp.link != None:
             before_temp = temp
             temp = temp.link

@@ -17,7 +17,7 @@ class Cache:
 
         node = self.linked_list.find_node(query)
         self.linked_list.move_to_front(node)
-        return node.data
+        return exist
 
     def set_data(self, query, result):
         exist = self.lookup.get(query)
@@ -25,7 +25,6 @@ class Cache:
         if exist is not None:
             node = self.linked_list.find_node(query)
             self.lookup[query] = result
-            node.data = result
             self.linked_list.move_to_front(node)
         else:
             if self.size == self.MAX_SIZE:
@@ -34,7 +33,7 @@ class Cache:
             else:
                 self.size += 1
 
-            new_node = Node(query, result)
+            new_node = Node(query)
             self.linked_list.append_to_front(new_node)
             self.lookup[query] = result
 
@@ -47,6 +46,8 @@ if __name__ == '__main__':
     cache.set_data("fourth", 4)
     print(cache.get_data("first"))
     print(cache.get_data("second"))
-    print(cache.lookup)
-    print(cache.linked_list.head.data)
-    print(cache.linked_list.tail.data)
+    cache.set_data("fiver", 5)
+    print(cache.get_data("second"))
+    print(cache.get_data("fourth"))
+    cache.set_data("sixth", 6)
+    print(cache.lookup)  # cache should contain(sixth, fourth, second)
